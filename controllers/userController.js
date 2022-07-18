@@ -342,7 +342,7 @@ exports.getotp = catchAsyncErrors(async (req, res, next) => {
                     .create({
                         // body: message,
                         from: phoneNumber,
-                        to: `+91${phone}`,
+                        to: `${phone}`,
                         channel: 'sms'
                     }).then((verification) => {
                         data = verification
