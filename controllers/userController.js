@@ -334,19 +334,8 @@ exports.internalservices = catchAsyncErrors(async (req, res) => {
 
 exports.getotp = catchAsyncErrors(async (req, res, next) => {
     try {
-        // const { phone } = req.body
-        // const findUser = await user.find({ phone })
-        // // console.log(findUser)
-        // if (!findUser) {
-        //     res.status(400).json({
-        //         success: false,
-        //         message: "user doesn't exsit !",
-        //     });
-        //     return
-        // }
-        // if (findUser) {
+        const { phone } = req.body
             try {
-                // console.log("data")
                 const client = require('twilio')(accountSid, authToken);
                 await client.verify.services(serviceId)
                     .verifications
