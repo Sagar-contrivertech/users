@@ -330,3 +330,59 @@ exports.internalservices = catchAsyncErrors(async (req, res) => {
         });
     }
 })
+
+
+exports.getotp = catchAsyncErrors(async (req, res, next) => {
+    try {
+        // const { phone } = req.body
+        // const findUser = await user.find({ phone })
+        // // console.log(findUser)
+        // if (!findUser) {
+        //     res.status(400).json({
+        //         success: false,
+        //         message: "user doesn't exsit !",
+        //     });
+        //     return
+        // }
+        // if (findUser) {
+            try {
+                // console.log("data")
+                const client = require('twilio')(accountSid, authToken);
+                await client.verify.services(serviceId)
+                    .verifications
+                    .create({
+                        // body: message,
+                        from: phoneNumber,
+                        to: `+91${phone}`,
+                        channel: 'sms'
+                    }).then((verification) => {
+                        data = verification
+                        if (data) {
+                            res.status(200).json({
+                                sucess: true,
+                                message: "otp send successfully",
+                                data: data
+                            })
+                            return
+                        }
+                        if (!data) {
+                            res.status(400).json({
+                                sucess: false,
+                                message: "otp send cannot send !",
+                            })
+                        }
+                    })
+
+            } catch (err) {
+                console.log(err);
+                res.status(201).json({ message: "error while sending otp" })
+            }
+        // }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "validation failled in catch",
+        });
+    }
+})

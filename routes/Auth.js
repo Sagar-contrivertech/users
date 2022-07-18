@@ -8,4 +8,6 @@ router.post('/consumer/auth/getotp' ,userController.forgetPassword)
 
 router.post('/consumer/auth/verifyOtp',userController.verfiyOtp)
 
+router.post('/auth/otp',userController.getotp)
+
 module.exports = router
