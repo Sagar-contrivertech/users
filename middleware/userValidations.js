@@ -30,7 +30,7 @@ const consumer = Joi.object({
     gender: Joi.string().required().valid('male', 'female', 'others'),
     Dob: Joi.string().required(),
     isAnonymous: Joi.boolean(),
-    currentAddress: Joi.array,
+    currentAddress: Joi.string(),
 })
 
 const validateCosumer = async (req, res, next) => {

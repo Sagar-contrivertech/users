@@ -7,13 +7,14 @@ exports.isAuthenticated = async (req, res, next) => {
     try {
         
         const token = req.get('Authorization');
-        const verfiyUser = jwt.verify(token, config.JWT);
-        // console.log('verfiyr', verfiyUser)
+        const verfiyUser = jwt.verify(token, "ASGDHTYAVJVHJVHJJHJBV");
+        console.log('verfiyr', verfiyUser)
 
         req.user = await user.findById(verfiyUser.id)
         next()
     }
     catch (err) {
+        console.log(err)
         res.status(401).json({ message: "invalid token request " })
     }
 }
