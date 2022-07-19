@@ -49,7 +49,7 @@ user.methods.comparePassword = async function (enteredpassword) {
 
 
 user.methods.getJwtToken = function () {
-    return jwt.sign({ id: this._id }, config.JWT, {
+    return jwt.sign({ id: this._id }, "ASGDHTYAVJVHJVHJJHJBV", {
         expiresIn: '7d'
     })
 }
