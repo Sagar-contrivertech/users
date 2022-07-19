@@ -14,6 +14,9 @@ const user = mongoose.Schema({
     phone: {
         type: Number
     },
+    Dob: {
+        type: String
+    },
     password: {
         type: String
     },
@@ -23,7 +26,7 @@ const user = mongoose.Schema({
     },
     isRemoved: {
         type: Boolean,
-        default:false
+        default: false
     },
     profileImage: {
         type: String
@@ -40,8 +43,8 @@ const user = mongoose.Schema({
 }, { timestamps: true })
 
 
-user.methods.comparePassword = async function(enteredpassword){
-    return await bcrypt.compare(enteredpassword,this.password)
+user.methods.comparePassword = async function (enteredpassword) {
+    return await bcrypt.compare(enteredpassword, this.password)
 }
 
 

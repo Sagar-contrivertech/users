@@ -12,10 +12,6 @@ const consumerSchema = new mongoose.Schema({
             values: ['male', 'female', 'others']
         }
     },
-    Dob: {
-        type: String,
-        require: true
-    },
     isAnonymous: {
         type: Boolean,
     },
