@@ -7,6 +7,7 @@ const registerUser = Joi.object({
         .required(),
     phone: Joi.string().length(10).pattern(/[6-9]{1}[0-9]{9}/).required(),
     password: Joi.string().required().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+    Dob:Joi.string(),
     userType: Joi.string().required().valid("consumer", "businessOwner", "agent", "admin", "subAdmin")
 
 })
