@@ -335,6 +335,15 @@ exports.internalservices = catchAsyncErrors(async (req, res) => {
 exports.getotp = catchAsyncErrors(async (req, res, next) => {
     try {
         const { phone } = req.body
+        const userfind = await user.find({ phone: req.body.phone })
+        if (userfind) {
+            res.status(400).json({
+                success: true,
+                message: 'already register with this Number'
+            })
+            return
+        }
+        if (!userfind) {
             try {
                 const client = require('twilio')(accountSid, authToken);
                 await client.verify.services(serviceId)
@@ -366,6 +375,9 @@ exports.getotp = catchAsyncErrors(async (req, res, next) => {
                 console.log(err);
                 res.status(201).json({ message: "error while sending otp" })
             }
+            return
+        }
+
         // }
     } catch (error) {
         console.log(error);
